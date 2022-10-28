@@ -2,7 +2,7 @@
 import { Grid } from "@nextui-org/react";
 import CameraCard from "../../components/CameraCard";
 
-function Browse({ cameras }) {
+function BrowseAll({ cameras }) {
   return (
     <>
       <h1> All </h1>
@@ -36,4 +36,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Browse;
+export default BrowseAll;
