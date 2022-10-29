@@ -83,7 +83,7 @@ function Camera({ camera }) {
                         <Back />
                     </Grid>
                     <Grid>
-                        <Text h1 color="white"> <Shield route={camera.location.route} />{camera.location.locationName} </Text>
+                        <Text h1 color="white"> <Shield route={camera.location.route} />{String(camera.location.locationName).split(":")[1]} </Text>
                     </Grid>
                 </Grid.Container>
 
