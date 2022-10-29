@@ -20,7 +20,7 @@ export default function Browse({ cameras, district }) {
 // This function gets called at build time on server-side.
 // It won't be called on client-side, so you can even do
 // direct database queries.
-/*
+
 export async function getStaticPaths() {
     //https://caltrans-cameras.quacksire.workers.dev/list
 
@@ -52,8 +52,6 @@ export async function getStaticPaths() {
     // { fallback: false } means other routes should 404.
     return { paths, fallback: false }
 }
-*/
-
 export async function getStaticProps({params}) {
     // Call an external API endpoint to get posts.
     // You can use any data fetching library
