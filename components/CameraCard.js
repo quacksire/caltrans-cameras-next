@@ -1,6 +1,6 @@
 import {Card, Col, Text} from "@nextui-org/react";
 import Link from "next/link";
-
+import Shield from "./Shield";
 export default function Load(props) {
   let cam = props.camera.cctv;
 
@@ -16,6 +16,7 @@ export default function Load(props) {
             color="#ffffffAA"
             css={{ backgroundColor: "black" }}
           >
+            <Shield route={cam.location.route} width={25} height={25}/>
             {cam.location.route}
           </Text>
           <Text h4 color="white" css={{ backgroundColor: "black" }}>

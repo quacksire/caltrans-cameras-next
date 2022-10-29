@@ -57,8 +57,10 @@
 
 
 
-import {Container, Text, Grid} from "@nextui-org/react";
+import {Container, Text, Grid, Card, Col} from "@nextui-org/react";
 import dynamic from 'next/dynamic'
+import Back from "../../../components/Back"
+import Shield from "../../../components/Shield"
 const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
     ssr: false,
 })
@@ -66,7 +68,7 @@ const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
 function Camera({ camera }) {
     if (!camera || camera.error) {
         return (
-            <Container fluid center>
+            <Container fluid>
                 <Text h1 color="white"> Page Not Availible </Text>
                 <br />
 
@@ -75,15 +77,43 @@ function Camera({ camera }) {
     }
 
     return (
-            <Container fluid center>
-                <Text h1 color="white"> {camera.location.locationName} </Text>
+            <Container fluid>
+                <Grid.Container gap={2} justify="center">
+                    <Grid>
+                        <Back />
+                    </Grid>
+                    <Grid>
+                        <Text h1 color="white"> <Shield route={camera.location.route} />{camera.location.locationName} </Text>
+                    </Grid>
+                </Grid.Container>
+
                 <br />
                 <Grid.Container gap={2} justify="center">
                     <Grid xs={4}>
-                        <StreamPlayer />
+                        <Card css={{ w: "100%", h: "100%" }}>
+                            <Card.Body css={{ p: 0 }}>
+                                <Card.Image
+                                    src={camera.imageData.static.currentImageURL}
+                                    objectFit="cover"
+                                    width="100%"
+                                    height="100%"
+                                />
+                            </Card.Body>
+                        </Card>
                     </Grid>
                     <Grid xs={4}>
-
+                        <Card css={{ w: "100%", h: "100%" }}>
+                            <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                                <Col>
+                                    <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
+                                        {camera.location.direction}bound {camera.location.route}
+                                    </Text>
+                                    <Text h3 color="white">
+                                        Near {camera.location.nearbyPlace} in {camera.location.county} County
+                                    </Text>
+                                </Col>
+                            </Card.Header>
+                        </Card>
                     </Grid>
                 </Grid.Container>
 
