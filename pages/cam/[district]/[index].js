@@ -106,7 +106,7 @@ function Camera({ camera }) {
                             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                                 <Col>
                                     <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
-                                        {camera.location.direction}bound {camera.location.route}
+                                        {camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}
                                     </Text>
                                     <Text h3 color="white">
                                         Near {camera.location.nearbyPlace} in {camera.location.county} County
