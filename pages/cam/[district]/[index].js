@@ -64,10 +64,10 @@ const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
 })
 //import StreamPlayer from "../../../components/StreamPlayer"
 function Camera({ camera }) {
-    if (camera.error) {
+    if (!camera || camera.error) {
         return (
             <Container fluid center>
-                <Text h1 color="white"> {camera.error} </Text>
+                <Text h1 color="white"> Page Not Availible </Text>
                 <br />
 
             </Container>
