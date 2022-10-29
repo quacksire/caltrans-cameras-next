@@ -1,9 +1,11 @@
-import { Card, Col, Text } from "@nextui-org/react";
+import {Card, Col, Text} from "@nextui-org/react";
+import Link from "next/link";
 
 export default function Load(props) {
   let cam = props.camera.cctv;
 
   return (
+     <Link href={`/cam/${cam.location.district}/${cam.index}`}>
     <Card isPressable isHoverable variant="flat" css={{ mw: "400px" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
         <Col>
@@ -32,5 +34,6 @@ export default function Load(props) {
         alt="Card image background"
       />
     </Card>
+     </Link>
   );
 }
