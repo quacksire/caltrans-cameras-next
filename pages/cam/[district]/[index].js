@@ -59,6 +59,7 @@
 
 import {Container, Text, Grid, Card, Col} from "@nextui-org/react";
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import Back from "../../../components/Back"
 import Shield from "../../../components/Shield"
 const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
@@ -77,6 +78,15 @@ function Camera({ camera }) {
     }
 
     return (
+        <>
+            <Head>
+                <title>{camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}</title>
+                <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
+                <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
+
+            </Head>
+
+
             <Container fluid>
                 <Grid.Container gap={2} justify="center">
                     <Grid>
@@ -116,15 +126,15 @@ function Camera({ camera }) {
                         </Card>
                     </Grid>
                 </Grid.Container>
-
             </Container>
+        </>
     )
 }
 
 // This function gets called at build time
 export async function getStaticPaths() {
     // Call an external API endpoint to get posts
-    const res = await fetch('https://caltrans-cameras-cams.quacksire.workers.dev')
+    const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/`)
     const cameras = await res.json()
 
 
@@ -148,7 +158,7 @@ export async function getStaticProps({ params }) {
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
     try {
-        const res = await fetch(`https://caltrans-cameras-cams.quacksire.workers.dev/d${params.district}`)
+        const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/d${params.district}`)
         const cameras = await res.json()
         let realIndex;
         cameras.forEach((cam, index) => {
@@ -164,10 +174,9 @@ export async function getStaticProps({ params }) {
         let pageError = {
             error: "Render Error"
         }
-
         return { props: { pageError } }
     }
-    }
+}
 
 
 export default Camera
