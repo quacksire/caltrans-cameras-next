@@ -23,9 +23,6 @@ export default function Load(props) {
           </Text>
         </Col>
       </Card.Header>
-      {/*<Card.Body>
-                                <Text>{camera.cctv.location.locationName}</Text>
-                                </Card.Body>*/}
       <Card.Image
         src={cam.imageData.static.currentImageURL}
         objectFit="cover"

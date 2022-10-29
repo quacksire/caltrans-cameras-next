@@ -57,18 +57,36 @@
 
 
 
-import {Container, Text} from "@nextui-org/react";
+import {Container, Text, Grid} from "@nextui-org/react";
 import dynamic from 'next/dynamic'
 const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
     ssr: false,
 })
 //import StreamPlayer from "../../../components/StreamPlayer"
 function Camera({ camera }) {
+    if (camera.error) {
+        return (
+            <Container fluid center>
+                <Text h1 color="white"> {camera.error} </Text>
+                <br />
+
+            </Container>
+        )
+    }
+
     return (
             <Container fluid center>
                 <Text h1 color="white"> {camera.location.locationName} </Text>
                 <br />
-                <StreamPlayer></StreamPlayer>
+                <Grid.Container gap={2} justify="center">
+                    <Grid xs={4}>
+                        <StreamPlayer />
+                    </Grid>
+                    <Grid xs={4}>
+
+                    </Grid>
+                </Grid.Container>
+
             </Container>
     )
 }
@@ -99,18 +117,27 @@ export async function getStaticProps({ params }) {
     //console.log(params)
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
-    const res = await fetch(`https://caltrans-cameras-cams.quacksire.workers.dev/d${params.district}`)
-    const cameras = await res.json()
-    let realIndex;
-    cameras.forEach((cam, index) => {
-        if (cam.cctv.index === params.index) {
-            realIndex = index
-        }
-    })
-    const camera = cameras[realIndex].cctv
+    try {
+        const res = await fetch(`https://caltrans-cameras-cams.quacksire.workers.dev/d${params.district}`)
+        const cameras = await res.json()
+        let realIndex;
+        cameras.forEach((cam, index) => {
+            if (cam.cctv.index === params.index) {
+                realIndex = index
+            }
+        })
+        const camera = cameras[realIndex].cctv
 
-    // Pass post data to the page via props
-    return { props: { camera } }
-}
+        // Pass post data to the page via props
+        return { props: { camera } }
+    } catch (e) {
+        let pageError = {
+            error: "Render Error"
+        }
+
+        return { props: { pageError } }
+    }
+    }
+
 
 export default Camera
