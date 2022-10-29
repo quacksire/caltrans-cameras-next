@@ -24,10 +24,11 @@ export default function Load(props) {
         </Col>
       </Card.Header>
       <Card.Image
-        src={cam.imageData.static.currentImageURL}
+        src={cam.imageData.static.currentImageURL || "https://picsum.photos/340"}
         objectFit="cover"
         width="100%"
         height={340}
+        showSkeleton
         alt="Card image background"
       />
     </Card>
