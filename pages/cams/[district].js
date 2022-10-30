@@ -1,11 +1,18 @@
 // posts will be populated at build time by getStaticProps()
-import { Grid } from "@nextui-org/react";
+import {Grid, Text} from "@nextui-org/react";
 import CameraCard from "../../components/CameraCard";
+import Back from "../../components/Back";
+import Shield from "../../components/Shield";
 
 export default function Browse({ cameras, district }) {
     return (
         <>
-            <h1> District {district} </h1>
+            <Grid.Container gap={2} justify="center">
+                <Grid>
+                    <h1> District {district} </h1>
+                </Grid>
+            </Grid.Container>
+
             <Grid.Container gap={1} justify="center">
                 {cameras.map((camera) => (
                     <Grid key={camera.cctv.location.locationName}>
@@ -21,11 +28,12 @@ export default function Browse({ cameras, district }) {
 // It won't be called on client-side, so you can even do
 // direct database queries.
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
     //https://caltrans-cameras.quacksire.workers.dev/list
 
     // Call an external API endpoint to get posts
     let districts = [
+        "1",
         "1",
         "2",
         "3",
@@ -52,11 +60,7 @@ export async function getServerSidePaths() {
     // { fallback: false } means other routes should 404.
     return { paths, fallback: false }
 }
-export async function getServerSideProps({params, res, req}) {
-    res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=1000, stale-while-revalidate=900'
-    )
+export async function getStaticProps({params, res, req}) {
     // Call an external API endpoint to get posts.
     // You can use any data fetching library
     const request = await fetch(

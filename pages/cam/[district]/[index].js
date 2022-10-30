@@ -91,7 +91,7 @@ function Camera({ camera }) {
                 <meta property="og:title" content={ogTitle} />
                 <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
                 <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
-
+                <meta name="viewport" content="width=device-width initial-scale=1.0" />
             </Head>
 
 
@@ -101,13 +101,13 @@ function Camera({ camera }) {
                         <Back />
                     </Grid>
                     <Grid>
-                        <Text h1 color="white"> <Shield route={camera.location.route} style={{p: "10px"}} />{String(camera.location.locationName).split(":")[1]} </Text>
+                        <Text h1 color="white"> <Shield route={camera.location.route} />{String(camera.location.locationName).split(":")[1]} </Text>
                     </Grid>
                 </Grid.Container>
 
                 <br />
-                <Grid.Container gap={2} justify="center" wrap="wrap">
-                    <Grid>
+                <Grid.Container gap={2} justify="center">
+                    <Grid xs={4}>
                         <Card css={{ w: "100%", h: "100%" }}>
                             <Card.Body css={{ p: 0 }}>
                                 <Card.Image
@@ -119,7 +119,7 @@ function Camera({ camera }) {
                             </Card.Body>
                         </Card>
                     </Grid>
-                    <Grid>
+                    <Grid xs={4}>
                         <Card css={{ w: "100%", h: "100%" }}>
                             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                                 <Col>
@@ -134,6 +134,7 @@ function Camera({ camera }) {
                         </Card>
                     </Grid>
                 </Grid.Container>
+
             </Container>
         </>
     )
@@ -173,7 +174,6 @@ export async function getServerSideProps({ params, req, res }) {
         const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/c/${params.district}/${params.index}`)
         let camera = await res.json()
         camera = camera[0]
-        console.log(camera)
         // Pass post data to the page via props
         return { props: { camera } }
     } catch (e) {
