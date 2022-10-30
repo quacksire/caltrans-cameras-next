@@ -27,7 +27,7 @@ export default function NavBar() {
                     </Text>
                 </Navbar.Brand>
                 <Navbar.Content hideIn="xs">
-                    <Navbar.Link href="#"> Home </Navbar.Link>
+                    <Navbar.Link href="/"> Home </Navbar.Link>
                     <Navbar.Link href="/cams/1">Cameras</Navbar.Link>
                     <Navbar.Link href="#">Pricing</Navbar.Link>
                     <Navbar.Link href="#">Company</Navbar.Link>

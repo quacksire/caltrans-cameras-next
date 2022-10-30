@@ -13,7 +13,13 @@ class MyDocument extends Document {
     render() {
         return (
             <Html>
-                <Head>{CssBaseline.flush()}</Head>
+                <Head>{CssBaseline.flush()}
+                    <link rel="preconnect" href="https://fonts.googleapis.com" />
+                        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+                            <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap"
+                                  rel="stylesheet" />
+
+                </Head>
                 <body style={{ backgroundColor: "black"}}>
                 <Main />
                 <NextScript />
