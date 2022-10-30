@@ -10,7 +10,7 @@ export default function Home({ districts }) {
                   {districts.map((district) => (
                       <Grid key={district}>
                           <Link href={`/cams/${district}`}>
-                              <Button color="primary" auto>
+                              <Button  flat color="primary" auto>
                                   District {district}
                               </Button>
                           </Link>

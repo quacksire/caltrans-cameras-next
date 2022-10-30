@@ -70,7 +70,7 @@ function Camera({ camera }) {
     if (!camera || camera.error) {
         return (
             <Container fluid>
-                <Text h1 color="white"> Page Not Availible </Text>
+                <Text h1 color="white"> Page Not Available </Text>
                 <br />
 
             </Container>
@@ -93,13 +93,13 @@ function Camera({ camera }) {
                         <Back />
                     </Grid>
                     <Grid>
-                        <Text h1 color="white"> <Shield route={camera.location.route} />{String(camera.location.locationName).split(":")[1]} </Text>
+                        <Text h1 color="white"> <Shield route={camera.location.route} style={{p: "10px"}} />{String(camera.location.locationName).split(":")[1]} </Text>
                     </Grid>
                 </Grid.Container>
 
                 <br />
-                <Grid.Container gap={2} justify="center">
-                    <Grid xs={4}>
+                <Grid.Container gap={1} justify="center" wrap="wrap">
+                    <Grid>
                         <Card css={{ w: "100%", h: "100%" }}>
                             <Card.Body css={{ p: 0 }}>
                                 <Card.Image
@@ -111,7 +111,7 @@ function Camera({ camera }) {
                             </Card.Body>
                         </Card>
                     </Grid>
-                    <Grid xs={4}>
+                    <Grid>
                         <Card css={{ w: "100%", h: "100%" }}>
                             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                                 <Col>
@@ -132,7 +132,7 @@ function Camera({ camera }) {
 }
 
 // This function gets called at build time
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
     // Call an external API endpoint to get posts
     const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/`)
     const cameras = await res.json()
@@ -153,7 +153,7 @@ export async function getStaticPaths() {
 }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     //console.log(params)
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
