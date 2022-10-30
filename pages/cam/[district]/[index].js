@@ -88,7 +88,7 @@ function Camera({ camera }) {
         <>
             <Head>
                 <title>{camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}</title>
-                <meta property="og:description" content={ogTitle} />
+                <meta property="og:title" content={ogTitle} />
                 <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
                 <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
 
