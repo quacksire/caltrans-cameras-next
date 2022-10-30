@@ -153,7 +153,11 @@ export async function getServerSidePaths() {
 }
 
 // This also gets called at build time
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req, res }) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1000, stale-while-revalidate=900'
+    )
     //console.log(params)
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1

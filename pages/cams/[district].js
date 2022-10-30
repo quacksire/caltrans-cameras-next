@@ -52,13 +52,17 @@ export async function getServerSidePaths() {
     // { fallback: false } means other routes should 404.
     return { paths, fallback: false }
 }
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({params, res, req}) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1000, stale-while-revalidate=900'
+    )
     // Call an external API endpoint to get posts.
     // You can use any data fetching library
-    const res = await fetch(
+    const request = await fetch(
         `https://caltrans-cameras.quacksire.workers.dev/d${params.district}`
     );
-    let cameras = await res.json();
+    let cameras = await request.json();
     let district = params.district
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
