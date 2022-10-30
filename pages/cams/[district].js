@@ -69,7 +69,7 @@ export async function getStaticProps({params, res, req}) {
     let cameras = await request.json();
     let district = params.district
     // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
+    // will receive `posts` as a prop at build time //
     return {
         props: {
             cameras,
