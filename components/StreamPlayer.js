@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { Player, Video, Ui, Hls, ClickToPlay } from '@vime/react';
 
@@ -16,3 +17,4 @@ export default function StreamPlayer(props) {
         </Player>
     );
 }
+*/
