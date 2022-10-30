@@ -57,7 +57,7 @@
 
 
 
-import {Container, Text, Grid, Card, Col} from "@nextui-org/react";
+import {Container, Text, Grid, Card, Col, Loading} from "@nextui-org/react";
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Back from "../../../components/Back"
@@ -66,6 +66,16 @@ const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
     ssr: false,
 })
 //import StreamPlayer from "../../../components/StreamPlayer"
+import useSWR from 'swr'
+import {useRouter} from "next/router";
+
+const fetcher = (...args) => fetch(...args, {crossOrigin: "anonymous"}).then((res) => res.json())
+// anonymous
+const center = {
+    display: "flex",
+    alignItems: "center"
+}
+
 function Camera({ camera }) {
     if (!camera || camera.error) {
         return (

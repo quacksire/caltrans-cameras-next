@@ -41,10 +41,10 @@ export default function handler(req) {
                     >
                         <img
                             alt="Vercel"
-                            height={200}
+                            height={1000}
                             src={`https://shields.caltranscameras.app/${route}.svg`}
                             style={{ margin: '0 30px' }}
-                            width={232}
+                            width={1032}
                         />
                     </div>
                     <div
