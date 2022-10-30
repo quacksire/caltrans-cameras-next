@@ -62,9 +62,9 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Back from "../../../components/Back"
 import Shield from "../../../components/Shield"
-const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
-    ssr: false,
-})
+//const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
+//    ssr: false,
+//})
 //import StreamPlayer from "../../../components/StreamPlayer"
 import useSWR from 'swr'
 import {useRouter} from "next/router";
