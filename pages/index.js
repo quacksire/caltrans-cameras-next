@@ -1,21 +1,33 @@
-import {Button, Grid} from "@nextui-org/react";
+import {Button, Grid, Loading} from "@nextui-org/react";
 import CameraCard from "../components/CameraCard";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 export default function Home({ districts }) {
+    const router = useRouter()
+    console.log(districts)
   return (
       <>
         <h1> Hello. This is under construction. Check Back Later</h1>
           <Grid.Container gap={2} justify="center">
                   {districts.map((district) => (
                       <Grid key={district}>
-                          <Link href={`/cams/${district}`}>
-                              <Button flat color="primary" auto>
+                              <Button flat color="primary" id={`nav-btn-${district}`}auto href={`/cams/${district}`} onHover={() => {router.prefetch(`/cams/${district}`)}} onClick={() => {
+                                  router.push(`/cams/${district}`);
+                                  document.getElementById(`nav-btn-${district}`).innerHTML = "Loading..."}}
+                                  >
                                   District {district}
                               </Button>
-                          </Link>
                       </Grid>
                   ))}
+              <Grid>
+                  <Button flat color="primary" id={`nav-btn-cms`} auto href={`/cms`} onHover={() => {router.prefetch(`/cms}`)}} onClick={() => {
+                      router.push(`/cms`);
+                      document.getElementById(`nav-btn-cms`).innerHTML = "Loading..."}}
+                  >
+                      Changeable Message Signs
+                  </Button>
+              </Grid>
           </Grid.Container>
 
       </>
