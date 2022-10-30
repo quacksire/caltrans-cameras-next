@@ -98,7 +98,7 @@ function Camera({ camera }) {
                 </Grid.Container>
 
                 <br />
-                <Grid.Container gap={1} justify="center" wrap="wrap">
+                <Grid.Container gap={2} justify="center" wrap="wrap">
                     <Grid>
                         <Card css={{ w: "100%", h: "100%" }}>
                             <Card.Body css={{ p: 0 }}>
@@ -162,16 +162,10 @@ export async function getServerSideProps({ params, req, res }) {
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
     try {
-        const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/d${params.district}`)
-        const cameras = await res.json()
-        let realIndex;
-        cameras.forEach((cam, index) => {
-            if (cam.cctv.index === params.index) {
-                realIndex = index
-            }
-        })
-        const camera = cameras[realIndex].cctv
-
+        const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/c/${params.district}/${params.index}`)
+        let camera = await res.json()
+        camera = camera[0]
+        console.log(camera)
         // Pass post data to the page via props
         return { props: { camera } }
     } catch (e) {
