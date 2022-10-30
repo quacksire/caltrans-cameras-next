@@ -86,11 +86,11 @@ export async function getStaticPaths() {
 }
 
  */
-export async function getStaticProps({params, res, req}) {
+export async function getStaticProps() {
     // Call an external API endpoint to get posts.
     // You can use any data fetching library
     const request = await fetch(
-        `http://localhost:3000/api/cms`
+        `http://127.0.0.1:3000/api/cms`
     );
     let cms = await request.json();
     //console.log(cms)
