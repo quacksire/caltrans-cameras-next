@@ -2,10 +2,10 @@
 import { Grid } from "@nextui-org/react";
 import CameraCard from "../../components/CameraCard";
 
-function Browse({ cameras }) {
+function BrowseAll({ cameras }) {
   return (
     <>
-      <h1> District 1 </h1>
+      <h1> All </h1>
       <Grid.Container gap={1} justify="center">
         {cameras.map((camera) => (
           <Grid key={camera.cctv.location.locationName}>
@@ -24,12 +24,9 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch(
-    `https://cwwp2.dot.ca.gov/data/d1/cctv/cctvStatusD01.json`
+    `https://caltrans-cameras.quacksire.workers.dev/`
   );
   let cameras = await res.json();
-
-  cameras = cameras.data;
-  cameras = cameras.splice(0, 90);
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
@@ -39,4 +36,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Browse;
+export default BrowseAll;

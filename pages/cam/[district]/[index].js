@@ -57,26 +57,61 @@
 
 
 
-import {Container, Text, Grid, Card, Col} from "@nextui-org/react";
+import {Container, Text, Grid, Card, Col, Loading} from "@nextui-org/react";
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import Back from "../../../components/Back"
 import Shield from "../../../components/Shield"
 const StreamPlayer = dynamic(() => import('../../../components/StreamPlayer'), {
     ssr: false,
 })
 //import StreamPlayer from "../../../components/StreamPlayer"
+import useSWR from 'swr'
+import {useRouter} from "next/router";
+
+const fetcher = (...args) => fetch(...args, {crossOrigin: "anonymous"}).then((res) => res.json())
+// anonymous
+const center = {
+    display: "flex",
+    alignItems: "center"
+}
+
 function Camera({ camera }) {
     if (!camera || camera.error) {
         return (
             <Container fluid>
-                <Text h1 color="white"> Page Not Availible </Text>
+                <Text h1 color="white"> Page Not Available </Text>
                 <br />
 
             </Container>
         )
     }
 
+    let ogTitle;
+    if (camera.location.direction) {
+        ogTitle = `${camera.location.direction}bound ${camera.location.route}`
+    } else {
+        ogTitle = camera.location.route
+    }
+
     return (
+        <>
+            <Head>
+                <title>{camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}</title>
+                <meta property="og:title" content={ogTitle} />
+                {/* Twitter */ }
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@ciderapp" />
+                <meta name="twitter:creator" content="@duckdoquack" />
+                <meta name="twitter:title" content={ogTitle} />
+                <meta property="twitter:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
+
+                <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
+                <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
+                <meta name="viewport" content="width=device-width initial-scale=1.0" />
+            </Head>
+
+
             <Container fluid>
                 <Grid.Container gap={2} justify="center">
                     <Grid>
@@ -118,13 +153,14 @@ function Camera({ camera }) {
                 </Grid.Container>
 
             </Container>
+        </>
     )
 }
 
 // This function gets called at build time
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
     // Call an external API endpoint to get posts
-    const res = await fetch('https://caltrans-cameras-cams.quacksire.workers.dev')
+    const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/`)
     const cameras = await res.json()
 
 
@@ -143,31 +179,27 @@ export async function getStaticPaths() {
 }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params, req, res }) {
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1000, stale-while-revalidate=900'
+    )
     //console.log(params)
     // params contains the post `id`.
     // If the route is like /posts/1, then params.id is 1
     try {
-        const res = await fetch(`https://caltrans-cameras-cams.quacksire.workers.dev/d${params.district}`)
-        const cameras = await res.json()
-        let realIndex;
-        cameras.forEach((cam, index) => {
-            if (cam.cctv.index === params.index) {
-                realIndex = index
-            }
-        })
-        const camera = cameras[realIndex].cctv
-
+        const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/c/${params.district}/${params.index}`)
+        let camera = await res.json()
+        camera = camera[0]
         // Pass post data to the page via props
         return { props: { camera } }
     } catch (e) {
         let pageError = {
             error: "Render Error"
         }
-
         return { props: { pageError } }
     }
-    }
+}
 
 
 export default Camera

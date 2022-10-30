@@ -1,5 +1,6 @@
 import {Card, Col, Text} from "@nextui-org/react";
 import Link from "next/link";
+import Image from 'next/image'
 import Shield from "./Shield";
 export default function Load(props) {
   let cam = props.camera.cctv;
