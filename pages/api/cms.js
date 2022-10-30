@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     );
 
     let cameras = await res.json();
-    console.log("+", cameras.data.length);
+    //console.log("+", cameras.data.length);
     data.push(...cameras.data);
   }
   res.send(data);
