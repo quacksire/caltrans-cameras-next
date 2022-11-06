@@ -18,7 +18,7 @@ export default function NavBar() {
 
   return (
     <>
-      <Navbar isCompact isBordered variant="sticky" style={{ w: "100%" }}>
+      <Navbar isBordered variant="floating">
         <Navbar.Toggle showIn="xs" />
         <Navbar.Brand>
           <Text b color="inherit" hideIn="xs">

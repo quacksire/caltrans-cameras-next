@@ -4,16 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['shields.caltranscameras.app'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'shields.caltranscameras.app',
-        port: '',
-        pathname: '/**',
-      },
-    ],
+    domains: ["shields.caltranscameras.app"],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
