@@ -25,10 +25,50 @@ export default function NavBar() {
             Caltrans Cameras
           </Text>
         </Navbar.Brand>
-        <Navbar.Content hideIn="xs">
-          <Navbar.Link href="/"> Home </Navbar.Link>
-          <Navbar.Link href="/cams/1">Cameras</Navbar.Link>
-          <Navbar.Link href="/cms">CMS</Navbar.Link>
+        <Navbar.Content
+          enableCursorHighlight="true"
+          isCursorHighlightRounded="true"
+          hideIn="xs"
+        >
+          <Navbar.Link
+            href="#"
+            onHover={() => {
+              router.prefetch(`/`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/`);
+              }, 50);
+            }}
+          >
+            Home
+          </Navbar.Link>
+          <Navbar.Link
+            href="#"
+            onHover={() => {
+              router.prefetch(`/cams/1`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/cams/1`);
+              }, 50);
+            }}
+          >
+            Cameras
+          </Navbar.Link>
+          <Navbar.Link
+            href="#"
+            onHover={() => {
+              router.prefetch(`/cms`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/cms`);
+              }, 50);
+            }}
+          >
+            CMS
+          </Navbar.Link>
           <Navbar.Link href="#"></Navbar.Link>
         </Navbar.Content>
 
