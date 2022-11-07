@@ -1,4 +1,5 @@
 import { Navbar, Button, Link, Text, Card, Radio } from "@nextui-org/react";
+import { useRouter } from "next/router";
 export default function NavBar() {
   const collapseItems = [
     "Home",
@@ -12,6 +13,8 @@ export default function NavBar() {
     "Help & Feedback",
     "Log Out",
   ];
+
+  let router = useRouter();
 
   return (
     <>
@@ -28,17 +31,41 @@ export default function NavBar() {
           hideIn="xs"
         >
           <Navbar.Link
-            href="/"
+            href="#"
+            onHover={() => {
+              router.prefetch(`/`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/`);
+              }, 50);
+            }}
           >
             Home
           </Navbar.Link>
           <Navbar.Link
-            href="/cams/1"
+            href="#"
+            onHover={() => {
+              router.prefetch(`/cams/1`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/cams/1`);
+              }, 50);
+            }}
           >
             Cameras
           </Navbar.Link>
           <Navbar.Link
-            href="/cms"
+            href="#"
+            onHover={() => {
+              router.prefetch(`/cms`);
+            }}
+            onClick={() => {
+              setTimeout(() => {
+                router.push(`/cms`);
+              }, 50);
+            }}
           >
             CMS
           </Navbar.Link>
