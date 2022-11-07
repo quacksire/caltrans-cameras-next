@@ -13,8 +13,6 @@ export default function NavBar() {
     "Log Out",
   ];
 
-  let router = useRouter();
-
   return (
     <>
       <Navbar isBordered variant="floating">
