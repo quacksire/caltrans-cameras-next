@@ -67,6 +67,9 @@ export async function getStaticProps({ params, res, req }) {
     `https://caltrans-cameras.quacksire.workers.dev/d${params.district}`
   );
   let cameras = await request.json();
+  //console.log(cameras);
+  cameras = cameras[0].pagedResult;
+
   let district = params.district;
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time //
