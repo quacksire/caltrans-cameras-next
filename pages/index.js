@@ -20,10 +20,6 @@ export default function Home() {
     "12",
   ];
 
-  districts.forEach(async (district) => {
-    router.prefetch(`/cams/${district}`);
-  });
-
   return (
     <>
       <h1> Hello. This is under construction. Check Back Later</h1>
