@@ -99,6 +99,7 @@ function Camera({ camera }) {
             <Head>
                 <title>{camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}</title>
                 <meta property="og:title" content={ogTitle} />
+                <meta property="og:description" content={`Near ${camera.location.nearbyPlace} in ${camera.location.county} County`} />
                 {/* Twitter */ }
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@ciderapp" />
@@ -106,7 +107,7 @@ function Camera({ camera }) {
                 <meta name="twitter:title" content={ogTitle} />
                 <meta property="twitter:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
 
-                <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />
+                <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}&image=${camera.imageData.static.currentImageURL}`} />
                 <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
                 <meta name="viewport" content="width=device-width initial-scale=1.0" />
             </Head>

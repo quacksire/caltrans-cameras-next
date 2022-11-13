@@ -13,65 +13,81 @@ export default function handler(req) {
         const nearby = searchParams.get('nearby') || null;
         const image = searchParams.get('image') || null;
 
+        if (searchParams.get("image")) {
+            return new ImageResponse(
+                (
+                            <img
+                                alt="Vercel"
+                                height={500}
+                                src={image}
+                                width={500}
+                            />
+                ),
+                {
+                    width: 500,
+                    height: 500,
+                },
+            );
 
-
-        return new ImageResponse(
-            (
-                <div
-                    style={{
-                        backgroundColor: 'black',
-                        backgroundSize: '150px 150px',
-                        height: '100%',
-                        width: '100%',
-                        display: 'flex',
-                        textAlign: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        flexWrap: 'nowrap',
-                    }}
-                >
+        } else {
+            return new ImageResponse(
+                (
                     <div
                         style={{
+                            backgroundColor: 'black',
+                            backgroundSize: '150px 150px',
+                            height: '100%',
+                            width: '100%',
                             display: 'flex',
+                            textAlign: 'center',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            justifyItems: 'center',
+                            flexDirection: 'column',
+                            flexWrap: 'nowrap',
                         }}
                     >
-                        <img
-                            alt="Vercel"
-                            height={1000}
-                            src={`https://shields.caltranscameras.app/${route}.svg`}
-                            style={{ margin: '0 30px' }}
-                            width={1032}
-                        />
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                justifyItems: 'center',
+                            }}
+                        >
+                            <img
+                                alt="Vercel"
+                                height={1000}
+                                src={`https://shields.caltranscameras.app/${route}.svg`}
+                                style={{margin: '0 30px'}}
+                                width={1032}
+                            />
+                        </div>
+                        <div
+                            style={{
+                                fontSize: 60,
+                                fontStyle: 'normal',
+                                letterSpacing: '-0.025em',
+                                color: 'white',
+                                marginTop: 30,
+                                padding: '0 120px',
+                                lineHeight: 1.4,
+                                whiteSpace: 'pre-wrap',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                justifyItems: 'center',
+                            }}
+                        >
+                            Near {nearby}
+                        </div>
                     </div>
-                    <div
-                        style={{
-                            fontSize: 60,
-                            fontStyle: 'normal',
-                            letterSpacing: '-0.025em',
-                            color: 'white',
-                            marginTop: 30,
-                            padding: '0 120px',
-                            lineHeight: 1.4,
-                            whiteSpace: 'pre-wrap',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            justifyItems: 'center',
-                        }}
-                    >
-                        Near {nearby}
-                    </div>
-                </div>
-            ),
-            {
-                width: 2400,
-                height: 1260,
-            },
-        );
+                ),
+                {
+                    width: 2400,
+                    height: 1260,
+                },
+            );
+        }
     } catch (e) {
         console.log(`${e.message}`);
         return new Response(`Failed to generate the image | ${e}`, {
