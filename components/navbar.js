@@ -18,7 +18,7 @@ export default function NavBar() {
 
   return (
     <>
-      <Navbar isBordered variant="floating">
+      <Navbar isBordered variant="floating" css={{ zIndex: 5}}>
         <Navbar.Toggle showIn="xs" />
         <Navbar.Brand>
           <Text b color="inherit" hideIn="xs">
