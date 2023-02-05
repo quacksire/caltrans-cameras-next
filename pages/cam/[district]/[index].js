@@ -65,10 +65,10 @@ import Shield from "../../../components/Shield"
 import Script from 'next/script'
 import { useState } from 'react'
 //import StreamPlayer from "../../../components/StreamPlayer"
-import useSWR from 'swr'
-import {useRouter} from "next/router";
+//import useSWR from 'swr'
+//import {useRouter} from "next/router";
 
-const fetcher = (...args) => fetch(...args, {crossOrigin: "anonymous"}).then((res) => res.json())
+//const fetcher = (...args) => fetch(...args, {crossOrigin: "anonymous"}).then((res) => res.json())
 // anonymous
 const center = {
     display: "flex",
@@ -99,7 +99,7 @@ var temperatureLow  = "";
 var sunrise         = "";
 var sunset          = "";
 var elevation       = "708";
-*/
+
 
     const [wx, setWx] = useState({
         localDate: null,
@@ -115,6 +115,7 @@ var elevation       = "708";
         sunset: null,
         elevation: null
     })
+    */
 
     // https://cwwp2.dot.ca.gov/vm/js/wx/d6/fre5atrte269.js
     // Hash
@@ -137,26 +138,26 @@ var elevation       = "708";
                 <meta property="og:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}&image=${camera.imageData.static.currentImageURL}`} />
                 <link rel="icon" href={`https://shields.caltranscameras.app/${camera.location.route}.svg`} sizes="any" type="image/svg+xml" />
                 <meta name="viewport" content="width=device-width initial-scale=1.0" />
-                <Script 
-                strategy={'onReady'} 
-                src={`https://cwwp2.dot.ca.gov/vm/js/wx/d${camera.location.district}/${String(camera.imageData.static.currentImageURL).split('/')[8].split(`\\`)[0]}.js`} 
-                onLoad={(f) => {
-                    setWx({
-                        localDate: localDate,
-                        periodName0: periodName0,
-                        periodName1: periodName1,
-                        weatherSummary0: weatherSummary0,
-                        weatherSummary1: weatherSummary1,
-                        conditionsIcon0: conditionsIcon0,
-                        conditionsIcon1: conditionsIcon1,
-                        temperatureHigh: temperatureHigh,
-                        temperatureLow: temperatureLow,
-                        sunrise: sunrise,
-                        sunset: sunset,
-                        elevation: f.elevation
-                    })
-                }}
-                />
+                {/*<Script
+                    strategy={'onReady'}
+                    src={`https://cwwp2.dot.ca.gov/vm/js/wx/d${camera.location.district}/${String(camera.imageData.static.currentImageURL).split('/')[8].split(`\\`)[0]}.js`}
+                    onLoad={(f) => {
+                        setWx({
+                            localDate: localDate,
+                            periodName0: periodName0,
+                            periodName1: periodName1,
+                            weatherSummary0: weatherSummary0,
+                            weatherSummary1: weatherSummary1,
+                            conditionsIcon0: conditionsIcon0,
+                            conditionsIcon1: conditionsIcon1,
+                            temperatureHigh: temperatureHigh,
+                            temperatureLow: temperatureLow,
+                            sunrise: sunrise,
+                            sunset: sunset,
+                            elevation: f.elevation
+                        })
+                    }}
+                />*/}
             </Head>
 
                 <Grid.Container gap={2} justify="center">
@@ -196,7 +197,7 @@ var elevation       = "708";
                                     {JSON.stringify(wx.elevation)}
                                     </Text>
 
-                                    
+
                                 </Col>
                             </Card.Header>
                         </Card>
@@ -216,7 +217,7 @@ export async function getStaticPaths() {
 
     // cctv.location.
     // [route, county, nearbyPlace, milepost, direction]
-    
+
 
     // Get the paths we want to pre-render based on posts
     const paths = cameras.map((cam) => ({
