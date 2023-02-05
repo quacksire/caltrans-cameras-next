@@ -55,28 +55,36 @@ export async function getStaticPaths() {
     return { paths, fallback: false };
 }
 export async function getStaticProps({ params, res, req }) {
-    // Call an external API endpoint to get posts.
-    // You can use any data fetching library
-    const request = await fetch(
-        `https://caltrans-cameras.quacksire.workers.dev/`
-    );
-    let cameras = await request.json();
-    //console.log(cameras);
-    //cameras = cameras[0].pagedResult;
-
 
     let route = params.route;
+    try {// Call an external API endpoint to get posts.
+        // You can use any data fetching library
+        const request = await fetch(
+            `https://caltrans-cameras.quacksire.workers.dev/`
+        );
+        let cameras = await request.json();
+        //console.log(cameras);
+        //cameras = cameras[0].pagedResult;
 
-    let camerasByRoute = cameras.filter((camera) => {
-        return camera.cctv.location.route === route;
-    });
+        let camerasByRoute = cameras.filter((camera) => {
+            return camera.cctv.location.route === route;
+        });
 
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time //
-    return {
+        // By returning { props: { posts } }, the Blog component
+        // will receive `posts` as a prop at build time //
+        return {
+            props: {
+                camerasByRoute,
+                route,
+            },
+        };
+    } catch (error) {
+        return {
         props: {
-            camerasByRoute,
-            route,
+            camerasByCounty: [],
+            county: county,
+            error: JSON.stringify(error),
         },
     };
+}
 }
