@@ -48,6 +48,7 @@ export default function Menu() {
                     {routes.map((route, index) => (
                         <Grid key={route}>
                             <Button
+                                css={{zIndex: "5"}}
                                 flat
                                 color="primary"
                                 id={`nav-btn-${route}`}
@@ -62,7 +63,7 @@ export default function Menu() {
                                         "Loading";
                                 }}
                             >
-                                <Image width={32} height={32} src={`https://shields.caltranscameras.app/${route}.svg`} />
+                                <Image css={{zIndex: "10"}} width={32} height={32} src={`https://shields.caltranscameras.app/${route}.svg`} />
                             </Button>
                         </Grid>
                     ))}

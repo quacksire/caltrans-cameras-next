@@ -8,22 +8,22 @@ export default function NavBar() {
 
   return (
     <>
-      <Navbar isBordered variant="sticky" css={{width: "100%"}}>
+      <Navbar isCompact isBordered variant="sticky" maxWidth={"fluid"} css={{zIndex: "100"}}>
         <Navbar.Brand>
           <Text b color="inherit" hideIn="xs">
             Caltrans Cameras
           </Text>
+
         </Navbar.Brand>
           <Navbar.Content
               enableCursorHighlight
               activeColor="secondary"
-              hideIn="xs"
               variant="underline"
           >
-            <Navbar.Link href="/menu">Menu</Navbar.Link>
+            <Navbar.Link  onPress={() => { router.push("/menu")}}>Menu</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content>
-          <Navbar.Link href="#">Cameras</Navbar.Link>
+          <Navbar.Link href="#">About</Navbar.Link>
         </Navbar.Content>
       </Navbar>
     </>
