@@ -33,10 +33,10 @@ export default function Home() {
               auto
               href={`/cams/${district}`}
               onHover={() => {
-                router.prefetch(`/cams/${district}`);
+                router.prefetch(`/cams/district/${district}`);
               }}
               onClick={() => {
-                router.push(`/cams/${district}`);
+                router.push(`/cams/district/${district}`);
                 document.getElementById(`nav-btn-${district}`).innerHTML =
                   "Loading";
               }}

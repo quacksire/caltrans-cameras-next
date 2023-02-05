@@ -112,8 +112,6 @@ function Camera({ camera }) {
                 <meta name="viewport" content="width=device-width initial-scale=1.0" />
             </Head>
 
-
-            <Container fluid>
                 <Grid.Container gap={2} justify="center">
                     <Grid>
                         <Back />
@@ -124,9 +122,9 @@ function Camera({ camera }) {
                 </Grid.Container>
 
                 <br />
-                <Grid.Container gap={2} justify="center">
-                    <Grid xs={4}>
-                        <Card css={{ w: "100%", h: "100%" }}>
+                <div className='dashboardContainer'>
+                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap', gap: 20, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+                        <Card css={{ mw: "400px" }}>
                             <Card.Body css={{ p: 0 }}>
                                 <Card.Image
                                     src={camera.imageData.static.currentImageURL}
@@ -136,13 +134,13 @@ function Camera({ camera }) {
                                 />
                             </Card.Body>
                         </Card>
-                    </Grid>
-                    <Grid xs={4}>
-                        <Card css={{ w: "100%", h: "100%" }}>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap', gap: 20, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+                        <Card css={{ mw: "400px" }}>
                             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                                 <Col>
                                     <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
-                                        {camera.location.direction && `${camera.location.direction}bound`} {camera.location.route}
+                                        {camera.location.direction && (camera.location.direction == 'Median') ? "Median" : `${camera.location.direction}bound`} {camera.location.route}
                                     </Text>
                                     <Text h3 color="white">
                                         Near {camera.location.nearbyPlace} in {camera.location.county} County
@@ -150,10 +148,8 @@ function Camera({ camera }) {
                                 </Col>
                             </Card.Header>
                         </Card>
-                    </Grid>
-                </Grid.Container>
-
-            </Container>
+                    </div>
+                </div>
         </>
     )
 }

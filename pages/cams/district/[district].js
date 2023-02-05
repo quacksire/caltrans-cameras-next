@@ -1,8 +1,8 @@
 // posts will be populated at build time by getStaticProps()
 import { Grid, Text } from "@nextui-org/react";
-import CameraCard from "../../components/CameraCard";
-import Back from "../../components/Back";
-import Shield from "../../components/Shield";
+import CameraCard from "../../../components/CameraCard";
+import Back from "../../../components/Back";
+import Shield from "../../../components/Shield";
 
 export default function Browse({ cameras, district }) {
   return (
