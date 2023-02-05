@@ -6,7 +6,7 @@ import Shield from "../../../components/Shield";
 import {counties} from '../../../components/lib/lists'
 import Image from "next/image";
 
-export default function Browse({ camerasByCounty, county }) {
+export default function Browse({ camerasByCounty, county, error }) {
   return (
     <>
       <Grid.Container gap={2} justify="center">
@@ -29,6 +29,13 @@ export default function Browse({ camerasByCounty, county }) {
             <Text h3> No cameras found in {county} </Text>
           </Grid.Container>
       )}
+
+      {error && (
+            <Grid.Container gap={1} justify="center">
+                <Text h3> {error} </Text>
+            </Grid.Container>
+      )}
+
     </>
   );
 }
@@ -56,28 +63,39 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 export async function getStaticProps({ params, res, req }) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const request = await fetch(
-    `https://caltrans-cameras.quacksire.workers.dev/`
-  );
-  let cameras = await request.json();
-  //console.log(cameras);
-  //cameras = cameras[0].pagedResult;
-
 
   let county = params.county.replace('-', ' ').replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
 
-  let camerasByCounty = cameras.filter((camera) => {
-    return camera.cctv.location.county === county;
-  });
+  try {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    const request = await fetch(
+        `https://caltrans-cameras.quacksire.workers.dev/`
+    );
+    let cameras = await request.json();
+    //console.log(cameras);
+    //cameras = cameras[0].pagedResult;
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time //
-  return {
-    props: {
-      camerasByCounty,
-      county,
-    },
-  };
+    let camerasByCounty = cameras.filter((camera) => {
+      return camera.cctv.location.county === county;
+    });
+
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time //
+    return {
+      props: {
+        camerasByCounty,
+        county,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        camerasByCounty: [],
+        county: county,
+        error: error,
+      },
+    };
+  }
 }
