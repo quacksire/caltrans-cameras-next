@@ -82,7 +82,7 @@ export async function getStaticProps({ params, res, req }) {
         return {
         props: {
             camerasByCounty: [],
-            county: county,
+            route: route,
             error: JSON.stringify(error),
         },
     };
