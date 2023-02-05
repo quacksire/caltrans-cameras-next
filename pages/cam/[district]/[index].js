@@ -194,7 +194,7 @@ var elevation       = "708";
                                         Near {camera.location.nearbyPlace} in {camera.location.county} County
                                     </Text>
                                     <Text small color="white">
-                                    {JSON.stringify(wx.elevation)}
+                                    {/*JSON.stringify(wx.elevation)*/}
                                     </Text>
 
 
