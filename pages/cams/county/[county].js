@@ -4,6 +4,7 @@ import CameraCard from "../../../components/CameraCard";
 import Back from "../../../components/Back";
 import Shield from "../../../components/Shield";
 import {counties} from '../../../components/lib/lists'
+import Image from "next/image";
 
 export default function Browse({ camerasByCounty, county }) {
   return (
@@ -14,13 +15,20 @@ export default function Browse({ camerasByCounty, county }) {
         </Grid>
       </Grid.Container>
 
-      <Grid.Container gap={1} justify="center">
-        {camerasByCounty.map((camera) => (
-          <Grid key={camera.cctv.location.locationName}>
-            <CameraCard camera={camera} />
-          </Grid>
-        ))}
-      </Grid.Container>
+
+      {camerasByCounty.length > 0 ? (
+          <Grid.Container gap={1} justify="center">
+            {camerasByCounty.map((camera) => (
+                <Grid key={camera.cctv.location.locationName}>
+                  <CameraCard camera={camera} />
+                </Grid>
+            ))}
+          </Grid.Container>
+      ) : (
+          <Grid.Container gap={1} justify="center">
+            <Text h3> No cameras found in {county} </Text>
+          </Grid.Container>
+      )}
     </>
   );
 }

@@ -15,13 +15,19 @@ export default function Browse({ camerasByRoute, route }) {
                 </Grid>
             </Grid.Container>
 
-            <Grid.Container gap={1} justify="center">
-                {camerasByRoute.map((camera) => (
-                    <Grid key={camera.cctv.location.locationName}>
-                        <CameraCard camera={camera} />
-                    </Grid>
-                ))}
-            </Grid.Container>
+            {camerasByRoute.length > 0 ? (
+                <Grid.Container gap={1} justify="center">
+                    {camerasByRoute.map((camera) => (
+                        <Grid key={camera.cctv.location.locationName}>
+                            <CameraCard camera={camera} />
+                        </Grid>
+                    ))}
+                </Grid.Container>
+            ) : (
+                <Grid.Container gap={1} justify="center">
+                    <Text h3> No cameras found along <Image width={20} height={20} src={`https://shields.caltranscameras.app/${route}.svg`} /> {route} </Text>
+                </Grid.Container>
+            )}
         </>
     );
 }
