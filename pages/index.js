@@ -1,7 +1,10 @@
-import { Button, Grid, Loading } from "@nextui-org/react";
+import {Button, Grid, Loading, Spacer} from "@nextui-org/react";
 import CameraCard from "../components/CameraCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Menu from "./menu";
+import Image from "next/image";
+import Center from "../components/Center";
 
 export default function Home() {
   const router = useRouter();
@@ -22,31 +25,34 @@ export default function Home() {
 
   return (
     <>
-      <h1> Hello. This is under construction. Check Back Later</h1>
-      <Grid.Container gap={2} justify="center">
-        {districts.map((district) => (
-          <Grid key={district}>
-            <Button
-              flat
-              color="primary"
-              id={`nav-btn-${district}`}
-              auto
-              href={`/cams/${district}`}
-              onHover={() => {
-                router.prefetch(`/cams/district/${district}`);
-              }}
-              onClick={() => {
-                router.push(`/cams/district/${district}`);
-                document.getElementById(`nav-btn-${district}`).innerHTML =
-                  "Loading";
-              }}
-            >
-              District {district}
-            </Button>
-          </Grid>
-        ))}
-        <Grid>
-          <Button
+      <Center>
+          <h1> Caltrans Cameras </h1>
+      </Center>
+
+      <Spacer y={1} />
+      <Menu />
+      <Spacer y={1} />
+        <Center>
+      <Button
+          flat
+          color="primary"
+          id={`nav-btn-cms`}
+          auto
+          href={`/cms`}
+          onHover={() => {
+            router.prefetch(`/cms`);
+          }}
+          onClick={() => {
+            router.push(`/cms`);
+            document.getElementById(`nav-btn-cms`).innerHTML = "Loading";
+          }}
+      >
+        Overhead Message Signs
+      </Button>
+        </Center>
+
+
+      {/*<Button
             flat
             color="primary"
             id={`nav-btn-cms`}
@@ -61,10 +67,7 @@ export default function Home() {
             }}
           >
             Changeable Message Signs
-          </Button>
-        </Grid>
-      </Grid.Container>
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          </Button> */}
     </>
   );
 }

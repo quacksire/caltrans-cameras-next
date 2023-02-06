@@ -1,4 +1,4 @@
-import {Button, Grid, Spacer} from "@nextui-org/react";
+import {Button, Grid, Spacer, Text} from "@nextui-org/react";
 import { useRouter } from 'next/router'
 export default function Footer() {
 
