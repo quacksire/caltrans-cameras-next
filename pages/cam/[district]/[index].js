@@ -64,6 +64,7 @@ import Back from "../../../components/Back"
 import Shield from "../../../components/Shield"
 import Script from 'next/script'
 import { useState } from 'react'
+import CameraCard from "../../../components/CameraCard";
 //import StreamPlayer from "../../../components/StreamPlayer"
 //import useSWR from 'swr'
 //import {useRouter} from "next/router";
@@ -169,10 +170,10 @@ var elevation       = "708";
                     </Grid>
                 </Grid.Container>
 
-                <br />
-                <div className='dashboardContainer'>
-                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap', gap: 20, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-                        <Card css={{ mw: "400px" }}>
+            <Grid.Container gap={1} justify="center">
+                    <Grid>
+
+                        <Card css={{ width: "30em", height: "25em" }}>
                             <Card.Body css={{ p: 0 }}>
                                 <Card.Image
                                     src={camera.imageData.static.currentImageURL}
@@ -182,27 +183,31 @@ var elevation       = "708";
                                 />
                             </Card.Body>
                         </Card>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap', gap: 20, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-                        <Card css={{ mw: "400px" }}>
-                            <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-                                <Col>
-                                    <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
-                                        {camera.location.direction && (camera.location.direction == 'Median') ? "Median" : `${camera.location.direction}bound`} {camera.location.route}
-                                    </Text>
-                                    <Text h3 color="white">
-                                        Near {camera.location.nearbyPlace} in {camera.location.county} County
-                                    </Text>
-                                    <Text small color="white">
+                    </Grid>
+                <Grid>
+                    <Card css={{ width: "30em", height: "25em" }}>
+                        <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                            <Col>
+                                <Text size={12} weight="bold" transform="uppercase" color="#9E9E9E">
+                                    {camera.location.direction && (camera.location.direction == 'Median') ? "Median" : `${camera.location.direction}bound`} {camera.location.route}
+                                </Text>
+                                <Text h3 color="white">
+                                    Near {camera.location.nearbyPlace} in {camera.location.county} County
+                                </Text>
+                                <Text small color="white">
                                     {/*JSON.stringify(wx.elevation)*/}
-                                    </Text>
+                                </Text>
 
 
-                                </Col>
-                            </Card.Header>
-                        </Card>
-                    </div>
-                </div>
+                            </Col>
+                        </Card.Header>
+                    </Card>
+                </Grid>
+            </Grid.Container>
+
+
+
+
         </>
     )
 }
