@@ -4,7 +4,7 @@ import CameraCard from "../../../components/CameraCard";
 import Back from "../../../components/Back";
 import Shield from "../../../components/Shield";
 
-export default function Browse({ cameras, district }) {
+export default function Browse({ cameras, district, error }) {
   return (
     <>
       <Grid.Container gap={2} justify="center">
@@ -13,13 +13,20 @@ export default function Browse({ cameras, district }) {
         </Grid>
       </Grid.Container>
 
-      <Grid.Container gap={1} justify="center">
+      {cameras?.length > 0 ? (<Grid.Container gap={1} justify="center">
         {cameras.map((camera) => (
-          <Grid key={camera.cctv.location.locationName}>
-            <CameraCard camera={camera} />
-          </Grid>
+            <Grid key={camera.cctv.location.locationName}>
+              <CameraCard camera={camera} />
+            </Grid>
         ))}
-      </Grid.Container>
+      </Grid.Container>) : (
+      <Grid.Container gap={1} justify="center">
+        <Text h3> No cameras found in District {district} </Text>
+        <Text small> {error} </Text>
+        </Grid.Container>
+      )
+      }
+
     </>
   );
 }
@@ -61,22 +68,34 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 export async function getStaticProps({ params, res, req }) {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const request = await fetch(
-    `https://caltrans-cameras.quacksire.workers.dev/d${params.district}`
-  );
-  let cameras = await request.json();
-  //console.log(cameras);
-  cameras = cameras[0].pagedResult;
-
   let district = params.district;
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time //
-  return {
-    props: {
-      cameras,
-      district,
-    },
-  };
+  try {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    const request = await fetch(
+      `https://caltrans-cameras.quacksire.workers.dev/d${params.district}`
+    );
+    let cameras = await request.json();
+    //console.log(cameras);
+    cameras = cameras[0].pagedResult;
+
+
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time //
+    return {
+      props: {
+        cameras,
+        district,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        district,
+        cameras: [],
+        error: JSON.stringify(error),
+      },
+    };
+  }
 }
