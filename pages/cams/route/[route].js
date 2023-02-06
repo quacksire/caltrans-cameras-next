@@ -15,7 +15,7 @@ export default function Browse({ camerasByRoute, route }) {
                 </Grid>
             </Grid.Container>
 
-            {camerasByRoute.length > 0 ? (
+            {camerasByRoute?.length > 0 ? (
                 <Grid.Container gap={1} justify="center">
                     {camerasByRoute.map((camera) => (
                         <Grid key={camera.cctv.location.locationName}>

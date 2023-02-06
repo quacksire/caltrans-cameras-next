@@ -16,7 +16,7 @@ export default function Browse({ camerasByCounty, county, error }) {
       </Grid.Container>
 
 
-      {camerasByCounty.length > 0 ? (
+      {camerasByCounty?.length > 0 ? (
           <Grid.Container gap={1} justify="center">
             {camerasByCounty.map((camera) => (
                 <Grid key={camera.cctv.location.locationName}>
