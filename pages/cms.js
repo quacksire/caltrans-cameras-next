@@ -1,9 +1,6 @@
 // posts will be populated at build time by getStaticProps()
-import { Grid, Text, Card, Row } from "@nextui-org/react";
-import CameraCard from "../components/CameraCard";
-import Back from "../components/Back";
-import Shield from "../components/Shield";
-import Head from "next/head";
+import { Grid} from "@nextui-org/react";
+import CmsCard from "../components/CmsCard";
 
 export default function Browse({ cms }) {
   return (
@@ -16,44 +13,8 @@ export default function Browse({ cms }) {
 
       <Grid.Container gap={1} justify="center">
         {cms.map((sign) => (
-          <Grid key={sign.cms.location.locationName}>
-            <Card css={{ mw: "330px" }}>
-              <Card.Header>
-                <Text b>
-                  {" "}
-                  <Shield route={sign.cms.location.route} />
-                  {sign.cms.location.route}
-                </Text>
-              </Card.Header>
-              <Card.Divider />
-              <Card.Body css={{ py: "$10" }}>
-                <Text
-                  css={{
-                    py: "$10",
-                    backgroundColor: "black",
-                    textAlign: "center",
-                    lineHeight: "1.1",
-                    thickness: "4px",
-                    fontWeight: "500",
-                    color: "yellow",
-                    align: "center",
-                  }}
-                >
-                  {sign.cms.message.phase1.phase1Line1 || ""}
-                  <br />
-                  {sign.cms.message.phase1.phase1Line2 || ""}
-                  <br />
-                  {sign.cms.message.phase1.phase1Line3 || ""}
-                </Text>
-              </Card.Body>
-              <Card.Divider />
-              <Card.Footer>
-                <Row justify="flex-end">
-                  {sign.cms.recordTimestamp.recordDate}{" "}
-                  {sign.cms.recordTimestamp.recordTime}
-                </Row>
-              </Card.Footer>
-            </Card>
+          <Grid key={sign.cms.index}>
+            <CmsCard cms={sign}></CmsCard>
           </Grid>
         ))}
       </Grid.Container>
@@ -82,8 +43,8 @@ export async function getStaticProps() {
   for (var i = 0; i <= districts.length - 1; i++) {
     let short;
     if (
-      String(districts[i]).charAt("0") == "0" &&
-      String(districts[i]) != "0"
+      String(districts[i]).charAt("0") === "0" &&
+      String(districts[i]) !== "0"
     ) {
       short = districts[i].charAt(1);
     } else {
