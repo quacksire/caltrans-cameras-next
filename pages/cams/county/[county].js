@@ -5,10 +5,22 @@ import Back from "../../../components/Back";
 import Shield from "../../../components/Shield";
 import {counties} from '../../../components/lib/lists'
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Browse({ camerasByCounty, county, error }) {
   return (
     <>
+      <Head>
+        <title>{`Cameras in ${county} County`}</title>
+        <meta property="og:title" content={`Cameras in ${county} County`} />
+        <meta property="og:description" content={`Caltrans Cameras in ${county} County`} />
+        {/* Twitter */ }
+        <meta name="twitter:creator" content="@duckdoquack" />
+        <meta name="twitter:title" content={`Caltrans Cameras in ${county} County`} />
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
+      </Head>
+
+
       <Grid.Container gap={2} justify="center">
         <Grid>
           <h1> Cameras in {county} County </h1>

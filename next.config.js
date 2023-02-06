@@ -4,7 +4,21 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ["shields.caltranscameras.app"],
+    domains: ['shields.caltranscameras.app', 'cwwp2.dot.ca.gov/data/**'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'shields.caltranscameras.app',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cwwp2.dot.ca.gov/',
+        port: '',
+        pathname: '/data/**',
+      },
+    ],
   },
 };
 

@@ -131,7 +131,6 @@ var elevation       = "708";
                 <meta property="og:description" content={`Near ${camera.location.nearbyPlace} in ${camera.location.county} County`} />
                 {/* Twitter */ }
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:site" content="@ciderapp" />
                 <meta name="twitter:creator" content="@duckdoquack" />
                 <meta name="twitter:title" content={ogTitle} />
                 <meta property="twitter:image" content={`/api/og?route=${camera.location.route}&nearby=${camera.location.nearbyPlace}`} />

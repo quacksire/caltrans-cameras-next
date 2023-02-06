@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Layout from "../components/layout";
 import NavBar from "../components/navbar";
 import '../styles/style.css'
+import Footer from "../components/footer";
 
 const darkTheme = createTheme({
   type: "dark",
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     <NextUIProvider theme={darkTheme}>
       <NavBar />
       <Component {...pageProps} />
+        <Footer />
       <Analytics />
     </NextUIProvider>
   );

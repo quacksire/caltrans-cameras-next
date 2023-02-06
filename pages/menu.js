@@ -1,8 +1,9 @@
 import Image from "next/image";
-import {Button, Card, Collapse, Container, Grid, Text} from "@nextui-org/react";
+import {Button, Card, Collapse, Container, Grid, Loading, Text} from "@nextui-org/react";
 import {useRouter} from "next/router";
 
 import {counties, countyDistricts, districts, routes} from "../components/lib/lists";
+import Shield from "../components/Shield";
 
 
 
@@ -30,8 +31,7 @@ export default function Menu() {
                                 }}
                                 onClick={() => {
                                     router.push(`/cams/district/${district}`);
-                                    document.getElementById(`nav-btn-${district}`).innerHTML =
-                                        "Loading";
+                                    document.getElementById(`nav-btn-${district}`).innerHTML = `<Loading css={{zIndex: "100"}} color="secondary" type="points-opacity" />`;
                                 }}
                             >
                                 District {district}
@@ -59,11 +59,10 @@ export default function Menu() {
                                 }}
                                 onClick={() => {
                                     router.push(`/cams/route/${route}`);
-                                    document.getElementById(`nav-btn-${route}`).innerHTML =
-                                        "Loading";
+                                    document.getElementById(`nav-btn-${route}`).innerHTML = `<Loading css={{zIndex: "100"}} color="secondary" type="points-opacity" />`;
                                 }}
                             >
-                                <Image css={{zIndex: "10"}} width={32} height={32} src={`https://shields.caltranscameras.app/${route}.svg`} />
+                                <Shield css={{zIndex: "10"}} width={32} height={32} route={route}></Shield>
                             </Button>
                         </Grid>
                     ))}
@@ -87,8 +86,7 @@ export default function Menu() {
                                 }}
                                 onClick={() => {
                                     router.push(`/cams/county/${String(county).toLowerCase().replace(" ", "-")}`);
-                                    document.getElementById(`nav-btn-${county}`).innerHTML =
-                                        "Loading";
+                                    document.getElementById(`nav-btn-${county}`).innerHTML = `<Loading css={{zIndex: "100"}} color="secondary" type="points-opacity" />`;
                                 }}
                             >
                                 {county}

@@ -5,13 +5,27 @@ import Back from "../../../components/Back";
 import Shield from "../../../components/Shield";
 import {routes} from '../../../components/lib/lists'
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Browse({ camerasByRoute, route }) {
     return (
         <>
+            <Head>
+                <title>{`${route} Cameras`}</title>
+                <meta property="og:title" content={`${route} Cameras`} />
+                <meta property="og:description" content={`Caltrans Cameras along ${route}`} />
+                {/* Twitter */ }
+                <meta name="twitter:creator" content="@duckdoquack" />
+                <meta name="twitter:title" content={`Caltrans Cameras along ${route}`} />
+                <meta name="viewport" content="width=device-width initial-scale=1.0" />
+                <link rel="icon" href={`https://shields.caltranscameras.app/${route}.svg`} sizes="any" type="image/svg+xml" />
+            </Head>
+
+
+
             <Grid.Container gap={2} justify="center">
                 <Grid>
-                    <h1> Cameras along <Image width={45} height={45} src={`https://shields.caltranscameras.app/${route}.svg`} /> {route} </h1>
+                    <h1> Cameras along <Image width={50} height={50} src={`https://shields.caltranscameras.app/${route}.svg`} style={{ paddingTop: "10px"}} /> {route} </h1>
                 </Grid>
             </Grid.Container>
 

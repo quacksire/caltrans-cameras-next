@@ -9,6 +9,6 @@ export default function Shield(props) {
       height={props.height || 50}
       style={{ p: 5 }}
       blurDataURL={`https://shields.caltranscameras.app/${props.route}.svg`}
-    />
+     />
   );
 }

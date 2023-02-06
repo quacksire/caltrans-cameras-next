@@ -1,4 +1,4 @@
-import { Card, Col, Text } from "@nextui-org/react";
+import {Card, Col, Grid, Text} from "@nextui-org/react";
 import Link from "next/link";
 import Image from "next/image";
 import Shield from "./Shield";
@@ -18,8 +18,14 @@ export default function Load(props) {
               color="#ffffffAA"
               css={{ backgroundColor: "black" }}
             >
-              <Shield route={cam.location.route} width={25} height={25} />
-              {cam.location.route}
+              <Grid.Container>
+                <Grid>
+                  <Shield route={cam.location.route} width={36} height={36} />
+                </Grid>
+                <Grid>
+                  <Text h6 css={{ paddingLeft: "10px", paddingTop: "7px"}}> {cam.location.route}</Text>
+                </Grid>
+              </Grid.Container>
             </Text>
             <Text h4 color="white" css={{ backgroundColor: "black" }}>
               {cam.location.nearbyPlace}

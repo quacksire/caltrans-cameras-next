@@ -3,10 +3,23 @@ import { Grid, Text } from "@nextui-org/react";
 import CameraCard from "../../../components/CameraCard";
 import Back from "../../../components/Back";
 import Shield from "../../../components/Shield";
+import Head from "next/head";
 
 export default function Browse({ cameras, district, error }) {
   return (
     <>
+      <Head>
+        <title>{`Cameras in District ${district}`}</title>
+        <meta property="og:title" content={`Cameras in District ${district}`} />
+        <meta property="og:description" content={`Caltrans Cameras in District ${district}`} />
+        {/* Twitter */ }
+        <meta name="twitter:creator" content="@duckdoquack" />
+        <meta name="twitter:title" content={`Caltrans Cameras in District ${district}`} />
+        <meta name="viewport" content="width=device-width initial-scale=1.0" />
+      </Head>
+
+
+
       <Grid.Container gap={2} justify="center">
         <Grid>
           <h1> District {district} </h1>
