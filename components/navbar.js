@@ -8,15 +8,15 @@ export default function NavBar() {
 
   return (
     <>
-      <Navbar isCompact isBordered variant="sticky" maxWidth={"fluid"} css={{zIndex: "100"}}>
+      <Navbar isCompact maxWidth={"fluid"} variant={"sticky"} css={{zIndex: "100"}}>
         <Navbar.Content
             enableCursorHighlight
             activeColor="secondary"
             variant="underline"
         >
-          <Navbar.Link  onPress={() => { router.push("/")}}>Menu</Navbar.Link>
+          <Navbar.Link  onPress={() => { router.push("/")}}>Home</Navbar.Link>
         </Navbar.Content>
-        <Navbar.Content>
+        <Navbar.Content enableCursorHighlight>
           <Navbar.Link  onPress={() => { router.push("/about")}}>About</Navbar.Link>
         </Navbar.Content>
       </Navbar>

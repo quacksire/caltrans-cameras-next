@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 
 import {counties, countyDistricts, districts, routes} from "../components/lib/lists";
 import Shield from "../components/Shield";
+import blankShield from "../public/SR-blank.png";
 
 
 
@@ -42,7 +43,7 @@ export default function Menu() {
             </Collapse>
             <Collapse
                 title="By Route"
-                contentLeft={<Image width={32} height={32} src={'https://shields.caltranscameras.app/SR-blank.png'} />}
+                contentLeft={<Image width={32} height={32} src={blankShield} />}
             >
                 <Grid.Container gap={1} justify="center">
                     {routes.map((route, index) => (
