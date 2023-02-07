@@ -63,7 +63,7 @@ import Head from 'next/head'
 import Back from "../../../components/Back"
 import Shield from "../../../components/Shield"
 import Script from 'next/script'
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import CameraCard from "../../../components/CameraCard";
 //import StreamPlayer from "../../../components/StreamPlayer"
 //import useSWR from 'swr'
@@ -85,6 +85,12 @@ function Camera({ camera }) {
             </Container>
         )
     }
+
+
+    console.log(camera)
+
+
+
 
     /*
     var localDate       = "";
@@ -242,6 +248,16 @@ export async function getStaticProps({ params, req, res }) {
         const res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/c/${params.district}/${params.index}`)
         let camera = await res.json()
         camera = camera[0]
+
+        let weatherRes = await fetch(`https://cwwp2.dot.ca.gov/vm/js/wx/d${camera.location.district}/${String(camera.imageData.static.currentImageURL).split('/')[7].split(`\\`)[0]}.js`)
+        let weather = await weatherRes.text()
+
+        //weather = String(weather).split(`var`)[1].split(`;`)[0].split(`=`)[1]
+
+        camera = {
+            ...camera,
+            weather: `${weather}`
+        }
         // Pass post data to the page via props
         return { props: { camera } }
     } catch (e) {
