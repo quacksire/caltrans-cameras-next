@@ -23,10 +23,10 @@ export default function Load(props) {
                   <Shield route={cam.location.route} width={36} height={36} />
                 </Grid>
                 <Grid>
-                  <Text h6 css={{ paddingLeft: "10px", paddingTop: "7px"}}> {cam.location.route}</Text>
+                  <Text h6> {cam.location.route}</Text>
                 </Grid>
                 <Grid>
-                <Text h4 color="white" css={{ backgroundColor: "black" }}>
+                <Text h4 color="white" css={{ backgroundColor: "black", paddingLeft: "10px", paddingTop: "7px" }}>
                   {cam.location.nearbyPlace}
                 </Text>
                 </Grid>
@@ -39,12 +39,11 @@ export default function Load(props) {
             cam.imageData.static.currentImageURL || "https://picsum.photos/340"
           }
           objectFit="cover"
-          width={320}
+          width="100%"
           height={340}
           showSkeleton
           alt="Card image background"
         />
-      </Card>
     </Link>
   );
 }
