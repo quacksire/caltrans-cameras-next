@@ -23,9 +23,6 @@ export default function Load(props) {
                   <Shield route={cam.location.route} width={36} height={36} />
                 </Grid>
                 <Grid>
-                  <Text h6> {cam.location.route}</Text>
-                </Grid>
-                <Grid>
                 <Text h4 color="white" css={{ backgroundColor: "black", paddingLeft: "10px", paddingTop: "7px" }}>
                   {cam.location.nearbyPlace}
                 </Text>
