@@ -25,10 +25,12 @@ export default function Load(props) {
                 <Grid>
                   <Text h6 css={{ paddingLeft: "10px", paddingTop: "7px"}}> {cam.location.route}</Text>
                 </Grid>
+                <Grid>
+                <Text h4 color="white" css={{ backgroundColor: "black" }}>
+                  {cam.location.nearbyPlace}
+                </Text>
+                </Grid>
               </Grid.Container>
-            </Text>
-            <Text h4 color="white" css={{ backgroundColor: "black" }}>
-              {cam.location.nearbyPlace}
             </Text>
           </Col>
         </Card.Header>
