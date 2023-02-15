@@ -8,7 +8,7 @@ export default function Load(props) {
 
   return (
     <Link href={`/cam/${cam.location.district}/${cam.index}`}>
-      <Card isPressable isHoverable variant="flat" css={{ mw: "400px" }}>
+      <Card isPressable isHoverable variant="flat" css={{ width: "400px", height: "400px" }}>
         <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
           <Col css={center}>
             <Text
