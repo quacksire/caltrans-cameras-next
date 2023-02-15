@@ -40,7 +40,7 @@ export default function Load(props) {
           }
           objectFit="cover"
           width={320}
-          height={260}
+          height={340}
           showSkeleton
           alt="Card image background"
         />
