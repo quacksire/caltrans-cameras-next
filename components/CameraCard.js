@@ -37,8 +37,8 @@ export default function Load(props) {
             cam.imageData.static.currentImageURL || "https://picsum.photos/340"
           }
           objectFit="cover"
-          width={320}
-          height={260}
+          width={640}
+          height={520}
           showSkeleton
           alt="Card image background"
         />
