@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { Tooltip } from "@nextui-org/react";
 
 export default function Shield(props) {
   return (
+  <Tooltip content={props.route}>
     <Image
       src={`https://shields.caltranscameras.app/${props.route}.svg`}
       alt={props.route}
@@ -10,5 +12,6 @@ export default function Shield(props) {
       style={{ p: 5 }}
       blurDataURL={`https://shields.caltranscameras.app/${props.route}.svg`}
      />
+   </Tooltip>
   );
 }
